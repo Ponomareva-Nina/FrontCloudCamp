@@ -1,3 +1,4 @@
+import { useId } from "react";
 import { Socials } from "../../../interfaces/user.interface";
 import { useAppSelector } from "../../../redux/redux-hooks";
 import styles from "./CommonInfo.module.scss";
@@ -20,7 +21,13 @@ export const CommonInfo = () => {
             </h2>
             <ul className={styles.socials_list}>
               {Object.keys(user.socials).map((social) => {
-                return <Social name={social} link={user.socials[social as keyof Socials]} />;
+                return (
+                  <Social
+                    key={useId()}
+                    name={social}
+                    link={user.socials[social as keyof Socials]}
+                  />
+                );
               })}
             </ul>
           </div>
