@@ -1,0 +1,24 @@
+.social {
+  display: flex;
+  text-transform: capitalize;
+  gap: .5rem;
+
+  & svg {
+    width: 1.6rem;
+    height: auto;
+    fill: var(--auxiliary-color);
+    opacity: .5;
+    vertical-align: middle;
+    transition: all .3s ease;
+  }
+
+  &:hover {
+    color: var(--accent-color);
+    
+    & svg {
+      opacity: 1;
+      fill: var(--accent-color);
+    }
+
+}
+}

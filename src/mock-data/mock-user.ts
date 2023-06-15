@@ -10,4 +10,5 @@ export const mockUser: User = {
     github: "",
     resume: "",
   },
+  details: null,
 };
