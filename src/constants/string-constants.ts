@@ -1,1 +1,1 @@
-export const GITHUB_LINK = 'https://github.com/Ponomareva-Nina';
+export const GITHUB_LINK = "https://github.com/Ponomareva-Nina";
