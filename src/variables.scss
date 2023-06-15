@@ -1,9 +1,11 @@
 :root {
   --base-font-size: 10px;
-
-  --bg-page: #F4F4F5; 
+  --box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.3);
+  --bg-page: #F4F4F5;
   --font-main-color: black;
+  --font-secondary-color: #FFFFFF;
   --accent-color: rgba(85, 88, 250, 1);
-  --auxiliary-color: rgba(0, 0, 0, 0.48);
+  --auxiliary-color: rgba(0, 0, 0, 0.5);
   --bg-popup-color: #FFFFFF;
+  --bg-btn-color: #5558FA;
 }
