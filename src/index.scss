@@ -1,0 +1,66 @@
+:root {
+  font-size: var(--base-font-size);
+}
+
+body {
+  font-size: 1.6rem;
+  background-color: var(--bg-page);
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 120rem;
+  scroll-behavior: smooth;
+  min-height: 100vh;
+  margin: 0 auto;
+}
+
+main {
+  flex-grow: 1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+div,
+p,
+ul,
+ol,
+li,
+a,
+form,
+button,
+input,
+h1,
+h2,
+h3 {
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+button,
+input,
+label {
+  border: none;
+  outline: none;
+  &:hover {
+    cursor: pointer;
+  }
+}
