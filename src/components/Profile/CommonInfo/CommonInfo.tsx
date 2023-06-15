@@ -10,10 +10,13 @@ export const CommonInfo = () => {
     <div className={styles.container}>
       {user && (
         <>
-          <div className={styles.avatar}>image</div>
+          <div className={styles.avatar}>
+            {user.name.slice(0, 1)}
+            {user.sername.slice(0, 1)}
+          </div>
           <div className={styles.user_info}>
             <h2>
-              {user?.name} {user?.sername}
+              {user.name} {user.sername}
             </h2>
             <ul className={styles.socials_list}>
               {Object.keys(user.socials).map((social) => {

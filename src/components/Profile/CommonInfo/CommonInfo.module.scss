@@ -1,6 +1,7 @@
 .container {
   display: flex;
   gap: 2.5rem;
+  align-items: center;
 }
 
 .socials_list {
@@ -13,4 +14,17 @@
   display: flex;
   flex-direction: column;
   gap: .8rem;
+}
+
+.avatar {
+  width: 8rem;
+  height: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+  border-radius: 50%;
+  background-color: var(--avatar-bg-color);
+  pointer-events: none;
+  user-select: none;
 }
