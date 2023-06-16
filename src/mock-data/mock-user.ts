@@ -1,14 +1,14 @@
 import { User } from "../interfaces/user.interface";
 
 export const mockUser: User = {
-  phone: "+7(999)999-99-99",
-  email: "tim.jennings@example.com",
-  name: "Иван",
-  sername: "Иванов",
+  phone: "+7(911)004-72-29",
+  email: "nina.9412@mail.ru",
+  name: "Нина",
+  sername: "Пономарева",
   socials: {
-    telegram: "",
-    github: "",
-    resume: "",
+    telegram: "https://t.me/TypicallyNi",
+    github: "https://github.com/Ponomareva-Nina",
+    resume: "https://hh.ru/resume/ab08a8e2ff09723f480039ed1f41694f457779",
   },
   details: null,
 };

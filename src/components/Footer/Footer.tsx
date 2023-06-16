@@ -7,8 +7,8 @@ import githubLogo from "../../assets/github.svg";
 export const Footer = () => {
   return (
     <footer className={styles.footer}>
-      <p>Task completed by:</p>
-      <NavLink to={GITHUB_LINK} target="_blank">
+      <p className="hidden">Task completed by:</p>
+      <NavLink to={GITHUB_LINK} target="_blank" className="hidden">
         <div className={styles.github}>
           <ReactSVG src={githubLogo} />
           <span>Ponomareva-Nina</span>
