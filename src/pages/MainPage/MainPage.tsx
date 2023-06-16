@@ -6,7 +6,9 @@ export const MainPage = () => {
   return (
     <div className={styles.container}>
       <Profile />
-      <Button appearance="normal">Начать</Button>
+      <Button id="button-start" appearance="normal">
+        Начать
+      </Button>
     </div>
   );
 };

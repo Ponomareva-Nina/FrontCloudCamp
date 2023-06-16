@@ -76,3 +76,23 @@ label {
     cursor: pointer;
   }
 }
+
+.hidden {
+  display: none;
+}
+
+.error {
+  color: red;
+}
+
+.text-input {
+  border: 1px solid var(--auxiliary-color);
+  border-radius: .4rem;
+  padding: 1.2rem;
+}
+
+:disabled {
+  cursor: default;
+  pointer-events: none;
+  color: var(--auxiliary-color);
+}
