@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ProfileForm, Sex } from "../../interfaces/profile-form.interface";
+import { ProfileForm } from "../../interfaces/profile-form.interface";
 import { useAppSelector } from "../../redux/redux-hooks";
 import { StepOne } from "./StepOne/StepOne";
 import { MultiStepper } from "../UI";
