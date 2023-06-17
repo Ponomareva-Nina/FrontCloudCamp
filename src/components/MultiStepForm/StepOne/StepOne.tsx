@@ -29,67 +29,81 @@ export const StepOne: FC<StepOneProps> = ({ form, nextHandler, validators }) => 
     >
       {({ errors, touched }) => (
         <Form className={commonStyles.form}>
-          <label htmlFor="field-nickname" className={commonStyles.field}>
-            <p>Nickname</p>
-            <Field
-              id="field-nickname"
-              type="string"
-              name="nickname"
-              placeholder="Nickname"
-              className={cn("text-input")}
-            />
-          </label>
-          {errors.nickname && touched.nickname && <div className="error">{errors.nickname}</div>}
+          <div className={commonStyles.field}>
+            <label htmlFor="field-nickname">
+              <p>Nickname</p>
+              <Field
+                id="field-nickname"
+                type="string"
+                name="nickname"
+                placeholder="Nickname"
+                className={cn("text-input")}
+              />
+            </label>
+            {errors.nickname && touched.nickname && <div className="error">{errors.nickname}</div>}
+          </div>
 
-          <label htmlFor="field-name" className={commonStyles.field}>
-            <p>Name</p>
-            <Field
-              id="field-name"
-              type="string"
-              name="name"
-              placeholder="Name"
-              className={cn("text-input")}
-            />
-          </label>
-          {errors.name && touched.name && <div className="error">{errors.name}</div>}
+          <div className={commonStyles.field}>
+            <label htmlFor="field-name">
+              <p>Name</p>
+              <Field
+                id="field-name"
+                type="string"
+                name="name"
+                placeholder="Name"
+                className={cn("text-input")}
+              />
+            </label>
+            {errors.name && touched.name && <div className="error">{errors.name}</div>}
+          </div>
 
-          <label htmlFor="field-sername" className={commonStyles.field}>
-            <p>Surname</p>
-            <Field
-              id="field-sername"
-              type="string"
-              name="surname"
-              placeholder="Surname"
-              className={cn("text-input")}
-            />
-          </label>
-          {errors.surname && touched.surname && <div className="error">{errors.surname}</div>}
+          <div className={commonStyles.field}>
+            <label htmlFor="field-sername">
+              <p>Surname</p>
+              <Field
+                id="field-sername"
+                type="string"
+                name="surname"
+                placeholder="Surname"
+                className={cn("text-input")}
+              />
+            </label>
+            {errors.surname && touched.surname && <div className="error">{errors.surname}</div>}
+          </div>
 
-          <label htmlFor="field-sex" className={commonStyles.field}>
-            <p>Surname</p>
-            <Field
-              id="field-sex"
-              component="select"
-              name="sex"
-              placeholder="Sex"
-              className={cn("text-input")}
+          <div className={commonStyles.field}>
+            <label htmlFor="field-sex">
+              <p>Sex</p>
+              <Field
+                id="field-sex"
+                component="select"
+                name="sex"
+                placeholder="Sex"
+                className={cn("text-input")}
+              >
+                <option value={Sex.MALE} id="field-sex-option-man">
+                  {Sex.MALE}
+                </option>
+                <option value={Sex.FEMALE} id="field-sex-option-woman">
+                  {Sex.FEMALE}
+                </option>
+              </Field>
+            </label>
+            {errors.sex && touched.sex && <div className="error">{errors.sex}</div>}
+          </div>
+
+          <div className={commonStyles.btns_panel}>
+            <Button appearance="outline" onClick={goToMainPage} id="button-back">
+              Назад
+            </Button>
+            <Button
+              onClick={nextHandler}
+              id="button-next"
+              disabled={!!errors.nickname || !!errors.name || !!errors.surname || !!errors.sex}
             >
-              <option value={Sex.MALE} id="field-sex-option-man">
-                {Sex.MALE}
-              </option>
-              <option value={Sex.FEMALE} id="field-sex-option-woman">
-                {Sex.FEMALE}
-              </option>
-            </Field>
-          </label>
-          {errors.sex && touched.sex && <div className="error">{errors.sex}</div>}
-
-          <Button appearance="outline" onClick={goToMainPage} id="button-back">
-            Назад
-          </Button>
-          <Button onClick={nextHandler} id="button-next">
-            Далее
-          </Button>
+              Далее
+            </Button>
+          </div>
         </Form>
       )}
     </Formik>

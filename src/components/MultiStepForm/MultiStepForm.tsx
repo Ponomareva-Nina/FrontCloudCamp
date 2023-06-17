@@ -6,6 +6,7 @@ import { Validators } from "./validators";
 import { MultiStepper } from "./Stepper/Stepper";
 import { StepTwo } from "./StepTwo/StepTwo";
 import { StepThree } from "./StepThree/StepThree";
+import styles from "./MultiStepForm.module.scss";
 
 export const MultiStepForm = () => {
   const user = useAppSelector((state) => state.user.entity);
@@ -41,7 +42,7 @@ export const MultiStepForm = () => {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <MultiStepper currentStep={currentStep} stepsLength={steps.length} />
       {steps[currentStep]}
     </div>

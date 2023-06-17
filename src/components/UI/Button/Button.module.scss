@@ -30,7 +30,8 @@
   color: var(--font-secondary-color);
 }
 
-.disabled {
+.disabled,
+:disabled {
   border: 2px solid var(--auxiliary-color);
   background-color: transparent;
   color: var(--auxiliary-color);
