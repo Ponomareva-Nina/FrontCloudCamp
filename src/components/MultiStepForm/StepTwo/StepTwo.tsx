@@ -1,95 +1,37 @@
-import { Field, Form, Formik } from "formik";
-import cn from "classnames";
+import { Field, Form, Formik, FormikValues } from "formik";
 import { FC } from "react";
-import * as Yup from "yup";
-import { useNavigate } from "react-router-dom";
-import commonStyles from "../common-form-styles.module.scss";
-import { ProfileForm, Sex } from "../../../interfaces/profile-form.interface";
+import commonStyles from "../MultiStepForm.module.scss";
 import { Button } from "../../UI";
+import { StepProps } from "../interfaces";
 
-interface StepTwoProps {
-  form: ProfileForm;
-  nextHandler: () => void;
-  validators: Yup.ObjectSchema<ProfileForm>;
-}
-
-export const StepTwo: FC<StepTwoProps> = ({ form, nextHandler, validators }) => {
-  const navigate = useNavigate();
-
-  const goToMainPage = () => {
-    navigate("/");
+export const StepTwo: FC<StepProps> = ({ form, prevHandler, nextHandler, validators }) => {
+  const submitHandler = (values: FormikValues) => {
+    nextHandler(values);
   };
 
   return (
     <Formik
       initialValues={form}
-      onSubmit={nextHandler}
+      onSubmit={submitHandler}
       validationSchema={validators}
       enableReinitialize
     >
       {({ errors, touched }) => (
         <Form className={commonStyles.form}>
-          <label htmlFor="field-nickname" className={commonStyles.field}>
-            <p>Nickname</p>
-            <Field
-              id="field-nickname"
-              type="string"
-              name="nickname"
-              placeholder="Nickname"
-              className={cn("text-input")}
-            />
-          </label>
-          {errors.nickname && touched.nickname && <div className="error">{errors.nickname}</div>}
+          <div className={commonStyles.field}>field</div>
 
-          <label htmlFor="field-name" className={commonStyles.field}>
-            <p>Name</p>
-            <Field
-              id="field-name"
-              type="string"
-              name="name"
-              placeholder="Name"
-              className={cn("text-input")}
-            />
-          </label>
-          {errors.name && touched.name && <div className="error">{errors.name}</div>}
+          <div className={commonStyles.field}>field</div>
 
-          <label htmlFor="field-sername" className={commonStyles.field}>
-            <p>Surname</p>
-            <Field
-              id="field-sername"
-              type="string"
-              name="surname"
-              placeholder="Surname"
-              className={cn("text-input")}
-            />
-          </label>
-          {errors.surname && touched.surname && <div className="error">{errors.surname}</div>}
+          <div className={commonStyles.field}>field</div>
 
-          <label htmlFor="field-sex" className={commonStyles.field}>
-            <p>Surname</p>
-            <Field
-              id="field-sex"
-              component="select"
-              name="sex"
-              placeholder="Sex"
-              className={cn("text-input")}
-            >
-              <option value={Sex.MALE} id="field-sex-option-man">
-                {Sex.MALE}
-              </option>
-              <option value={Sex.FEMALE} id="field-sex-option-woman">
-                {Sex.FEMALE}
-              </option>
-            </Field>
-          </label>
-          {errors.sex && touched.sex && <div className="error">{errors.sex}</div>}
-
-          <Button appearance="outline" onClick={goToMainPage} id="button-back">
-            Назад
-          </Button>
-          <Button onClick={nextHandler} id="button-next">
-            Далее
-          </Button>
+          <div className={commonStyles.btns_panel}>
+            <Button appearance="outline" id="button-back">
+              Назад
+            </Button>
+            <Button onClick={submitHandler} id="button-next" disabled={false}>
+              Далее
+            </Button>
+          </div>
         </Form>
       )}
     </Formik>

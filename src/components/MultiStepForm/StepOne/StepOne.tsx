@@ -1,29 +1,27 @@
-import { Field, Form, Formik } from "formik";
+import { Field, Form, Formik, FormikValues } from "formik";
 import cn from "classnames";
 import { FC } from "react";
-import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
-import commonStyles from "../common-form-styles.module.scss";
-import { ProfileForm, Sex } from "../../../interfaces/profile-form.interface";
+import commonStyles from "../MultiStepForm.module.scss";
+import { Sex } from "../../../interfaces/profile-form.interface";
 import { Button } from "../../UI";
+import { StepProps } from "../interfaces";
 
-interface StepOneProps {
-  form: ProfileForm;
-  nextHandler: () => void;
-  validators: Yup.ObjectSchema<ProfileForm>;
-}
-
-export const StepOne: FC<StepOneProps> = ({ form, nextHandler, validators }) => {
+export const StepOne: FC<StepProps> = ({ form, nextHandler, validators }) => {
   const navigate = useNavigate();
 
   const goToMainPage = () => {
     navigate("/");
   };
 
+  const submitHandler = (values: FormikValues) => {
+    nextHandler(values);
+  };
+
   return (
     <Formik
       initialValues={form}
-      onSubmit={nextHandler}
+      onSubmit={submitHandler}
       validationSchema={validators}
       enableReinitialize
     >
@@ -97,7 +95,7 @@ export const StepOne: FC<StepOneProps> = ({ form, nextHandler, validators }) => 
               Назад
             </Button>
             <Button
-              onClick={nextHandler}
+              onClick={submitHandler}
               id="button-next"
               disabled={!!errors.nickname || !!errors.name || !!errors.surname || !!errors.sex}
             >

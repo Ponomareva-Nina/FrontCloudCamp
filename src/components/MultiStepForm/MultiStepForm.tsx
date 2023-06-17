@@ -3,7 +3,7 @@ import { ProfileForm, Sex } from "../../interfaces/profile-form.interface";
 import { useAppSelector } from "../../redux/redux-hooks";
 import { StepOne } from "./StepOne/StepOne";
 import { Validators } from "./validators";
-import { MultiStepper } from "./Stepper/Stepper";
+import { MultiStepper } from "../UI";
 import { StepTwo } from "./StepTwo/StepTwo";
 import { StepThree } from "./StepThree/StepThree";
 import styles from "./MultiStepForm.module.scss";
@@ -21,25 +21,39 @@ export const MultiStepForm = () => {
     radioInfo: "",
     about: "",
   });
-  const steps = [
-    <StepOne form={formData} nextHandler={nextHandler} validators={Validators} />,
-    <StepTwo form={formData} nextHandler={nextHandler} validators={Validators} />,
-    <StepThree form={formData} nextHandler={nextHandler} validators={Validators} />,
-  ];
 
-  function nextHandler() {
-    console.log("next");
-    setCurrentStep((prev) => {
-      return prev < steps.length ? prev + 1 : prev;
-    });
-  }
+  const nextHandler = (stepData: Partial<ProfileForm>) => {
+    setFormData((prev) => ({ ...prev, ...stepData }));
+    setCurrentStep((prev) => prev + 1);
+  };
 
-  function prevHandler() {
-    console.log("prev");
+  const prevHandler = (stepData: Partial<ProfileForm>) => {
+    setFormData((prev) => ({ ...prev, ...stepData }));
     setCurrentStep((prev) => {
       return prev > 0 ? prev - 1 : prev;
     });
-  }
+  };
+
+  const steps = [
+    <StepOne
+      form={formData}
+      nextHandler={nextHandler}
+      prevHandler={prevHandler}
+      validators={Validators}
+    />,
+    <StepTwo
+      form={formData}
+      nextHandler={nextHandler}
+      prevHandler={prevHandler}
+      validators={Validators}
+    />,
+    <StepThree
+      form={formData}
+      nextHandler={nextHandler}
+      prevHandler={prevHandler}
+      validators={Validators}
+    />,
+  ];
 
   return (
     <div className={styles.container}>
