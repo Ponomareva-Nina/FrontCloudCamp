@@ -3,6 +3,9 @@ import { ProfileForm, Sex } from "../../interfaces/profile-form.interface";
 import { useAppSelector } from "../../redux/redux-hooks";
 import { StepOne } from "./StepOne/StepOne";
 import { Validators } from "./validators";
+import { MultiStepper } from "./Stepper/Stepper";
+import { StepTwo } from "./StepTwo/StepTwo";
+import { StepThree } from "./StepThree/StepThree";
 
 export const MultiStepForm = () => {
   const user = useAppSelector((state) => state.user.entity);
@@ -17,8 +20,11 @@ export const MultiStepForm = () => {
     radioInfo: "",
     about: "",
   });
-
-  const steps = [<StepOne form={formData} nextHandler={nextHandler} validators={Validators} />];
+  const steps = [
+    <StepOne form={formData} nextHandler={nextHandler} validators={Validators} />,
+    <StepTwo form={formData} nextHandler={nextHandler} validators={Validators} />,
+    <StepThree form={formData} nextHandler={nextHandler} validators={Validators} />,
+  ];
 
   function nextHandler() {
     console.log("next");
@@ -34,5 +40,10 @@ export const MultiStepForm = () => {
     });
   }
 
-  return <div>{steps[currentStep]}</div>;
+  return (
+    <div>
+      <MultiStepper currentStep={currentStep} stepsLength={steps.length} />
+      {steps[currentStep]}
+    </div>
+  );
 };
