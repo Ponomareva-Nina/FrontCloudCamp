@@ -34,6 +34,7 @@
         "react/require-default-props": ["off"],
         "jsx-a11y/label-has-associated-control": [ 2, {
             "controlComponents": ["Field"]
-        }]
+        }],
+        "@typescript-eslint/no-use-before-define": "warn"
     }
 }
