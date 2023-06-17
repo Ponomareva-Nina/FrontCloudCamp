@@ -2,7 +2,7 @@ export interface ProfileForm {
   nickname: string;
   name: string;
   surname: string;
-  sex: Sex;
+  sex: Sex | string;
   advantages: Array<string | undefined>;
   checkboxInfo: Array<string | undefined>;
   radioInfo: string;

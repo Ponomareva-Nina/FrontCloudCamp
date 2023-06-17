@@ -74,13 +74,10 @@ export const StepOne: FC<StepProps> = ({ form, nextHandler }) => {
           <div className={commonStyles.field}>
             <label htmlFor="field-sex">
               <p>Sex</p>
-              <Field
-                id="field-sex"
-                component="select"
-                name="sex"
-                placeholder="Sex"
-                className={cn("text-input")}
-              >
+              <Field id="field-sex" component="select" name="sex" className={cn("text-input")}>
+                <option defaultChecked disabled className="disabled" value="">
+                  Не выбрано
+                </option>
                 <option value={Sex.MALE} id="field-sex-option-man">
                   {Sex.MALE}
                 </option>
