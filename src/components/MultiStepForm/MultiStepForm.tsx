@@ -2,7 +2,6 @@ import { useState } from "react";
 import { ProfileForm, Sex } from "../../interfaces/profile-form.interface";
 import { useAppSelector } from "../../redux/redux-hooks";
 import { StepOne } from "./StepOne/StepOne";
-import { Validators } from "./validators";
 import { MultiStepper } from "../UI";
 import { StepTwo } from "./StepTwo/StepTwo";
 import { StepThree } from "./StepThree/StepThree";
@@ -22,8 +21,11 @@ export const MultiStepForm = () => {
     about: "",
   });
 
-  const nextHandler = (stepData: Partial<ProfileForm>) => {
+  const nextHandler = (stepData: Partial<ProfileForm>, isLastStep = false) => {
     setFormData((prev) => ({ ...prev, ...stepData }));
+    if (isLastStep) {
+      return;
+    }
     setCurrentStep((prev) => prev + 1);
   };
 
@@ -35,24 +37,9 @@ export const MultiStepForm = () => {
   };
 
   const steps = [
-    <StepOne
-      form={formData}
-      nextHandler={nextHandler}
-      prevHandler={prevHandler}
-      validators={Validators}
-    />,
-    <StepTwo
-      form={formData}
-      nextHandler={nextHandler}
-      prevHandler={prevHandler}
-      validators={Validators}
-    />,
-    <StepThree
-      form={formData}
-      nextHandler={nextHandler}
-      prevHandler={prevHandler}
-      validators={Validators}
-    />,
+    <StepOne form={formData} nextHandler={nextHandler} prevHandler={prevHandler} />,
+    <StepTwo form={formData} nextHandler={nextHandler} prevHandler={prevHandler} />,
+    <StepThree form={formData} nextHandler={nextHandler} prevHandler={prevHandler} />,
   ];
 
   return (

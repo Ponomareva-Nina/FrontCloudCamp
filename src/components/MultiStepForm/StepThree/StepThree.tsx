@@ -4,19 +4,14 @@ import commonStyles from "../MultiStepForm.module.scss";
 import { Button } from "../../UI";
 import { StepProps } from "../interfaces";
 
-export const StepThree: FC<StepProps> = ({ form, prevHandler, nextHandler, validators }) => {
+export const StepThree: FC<StepProps> = ({ form, prevHandler, nextHandler }) => {
   const submitHandler = (values: FormikValues) => {
-    nextHandler(values);
+    nextHandler(values, true);
   };
 
   return (
-    <Formik
-      initialValues={form}
-      onSubmit={submitHandler}
-      validationSchema={validators}
-      enableReinitialize
-    >
-      {({ errors, touched }) => (
+    <Formik initialValues={form} onSubmit={submitHandler} enableReinitialize>
+      {({ errors, touched, values }) => (
         <Form className={commonStyles.form}>
           <div className={commonStyles.field}>field</div>
 
@@ -25,7 +20,7 @@ export const StepThree: FC<StepProps> = ({ form, prevHandler, nextHandler, valid
           <div className={commonStyles.field}>field</div>
 
           <div className={commonStyles.btns_panel}>
-            <Button appearance="outline" id="button-back">
+            <Button appearance="outline" id="button-back" onClick={() => prevHandler(values)}>
               Назад
             </Button>
             <Button onClick={submitHandler} id="button-next" disabled={false}>

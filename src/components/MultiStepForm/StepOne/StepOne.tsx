@@ -1,4 +1,4 @@
-import { Field, Form, Formik, FormikValues } from "formik";
+import { ErrorMessage, Field, Form, Formik, FormikValues } from "formik";
 import cn from "classnames";
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
@@ -6,8 +6,9 @@ import commonStyles from "../MultiStepForm.module.scss";
 import { Sex } from "../../../interfaces/profile-form.interface";
 import { Button } from "../../UI";
 import { StepProps } from "../interfaces";
+import { stepOneValidators } from "../validators";
 
-export const StepOne: FC<StepProps> = ({ form, nextHandler, validators }) => {
+export const StepOne: FC<StepProps> = ({ form, nextHandler }) => {
   const navigate = useNavigate();
 
   const goToMainPage = () => {
@@ -22,10 +23,11 @@ export const StepOne: FC<StepProps> = ({ form, nextHandler, validators }) => {
     <Formik
       initialValues={form}
       onSubmit={submitHandler}
-      validationSchema={validators}
+      validationSchema={stepOneValidators}
       enableReinitialize
+      validateOnChange
     >
-      {({ errors, touched }) => (
+      {({ submitForm, isValid }) => (
         <Form className={commonStyles.form}>
           <div className={commonStyles.field}>
             <label htmlFor="field-nickname">
@@ -38,7 +40,7 @@ export const StepOne: FC<StepProps> = ({ form, nextHandler, validators }) => {
                 className={cn("text-input")}
               />
             </label>
-            {errors.nickname && touched.nickname && <div className="error">{errors.nickname}</div>}
+            <ErrorMessage name="nickname" component="span" className="error" />
           </div>
 
           <div className={commonStyles.field}>
@@ -52,7 +54,7 @@ export const StepOne: FC<StepProps> = ({ form, nextHandler, validators }) => {
                 className={cn("text-input")}
               />
             </label>
-            {errors.name && touched.name && <div className="error">{errors.name}</div>}
+            <ErrorMessage name="name" component="span" className="error" />
           </div>
 
           <div className={commonStyles.field}>
@@ -66,7 +68,7 @@ export const StepOne: FC<StepProps> = ({ form, nextHandler, validators }) => {
                 className={cn("text-input")}
               />
             </label>
-            {errors.surname && touched.surname && <div className="error">{errors.surname}</div>}
+            <ErrorMessage name="surname" component="span" className="error" />
           </div>
 
           <div className={commonStyles.field}>
@@ -87,18 +89,14 @@ export const StepOne: FC<StepProps> = ({ form, nextHandler, validators }) => {
                 </option>
               </Field>
             </label>
-            {errors.sex && touched.sex && <div className="error">{errors.sex}</div>}
+            <ErrorMessage name="sex" component="span" className="error" />
           </div>
 
           <div className={commonStyles.btns_panel}>
             <Button appearance="outline" onClick={goToMainPage} id="button-back">
               Назад
             </Button>
-            <Button
-              onClick={submitHandler}
-              id="button-next"
-              disabled={!!errors.nickname || !!errors.name || !!errors.surname || !!errors.sex}
-            >
+            <Button onClick={submitForm} id="button-next" disabled={!isValid}>
               Далее
             </Button>
           </div>
