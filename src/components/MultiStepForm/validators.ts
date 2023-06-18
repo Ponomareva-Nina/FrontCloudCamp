@@ -31,5 +31,5 @@ export const stepTwoValidators = Yup.object().shape({
 });
 
 export const stepThreeValidators = Yup.object().shape({
-  about: Yup.string().required("This field is required"),
+  about: Yup.string().required("This field is required").max(200, "Too long"),
 });

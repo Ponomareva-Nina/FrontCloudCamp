@@ -33,6 +33,25 @@
   justify-content: space-between;
 }
 
+label.textarea {
+  max-width: 100%;
+  width: 100%;
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  justify-content: space-between;
+
+  & .counter {
+    align-self: flex-end;
+    margin-left: auto;
+  }
+}
+
+
+
 @media screen and (max-width: 600px) {
   .container {
     padding: 1rem;
