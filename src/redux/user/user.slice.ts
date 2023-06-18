@@ -23,8 +23,13 @@ export const userSlice = createSlice({
         state.entity.phone = action.payload;
       }
     },
+    changeEmail: (state, action: PayloadAction<string>) => {
+      if (state.entity) {
+        state.entity.email = action.payload;
+      }
+    },
   },
 });
 
 export const { reducer } = userSlice;
-export const { changePhone } = userSlice.actions;
+export const { changePhone, changeEmail } = userSlice.actions;
