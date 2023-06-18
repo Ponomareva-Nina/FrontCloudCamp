@@ -1,7 +1,7 @@
 import { User } from "../interfaces/user.interface";
 
 export const mockUser: User = {
-  phone: "+7(911)004-72-29",
+  phone: "+79110047229",
   email: "nina.9412@mail.ru",
   name: "Нина",
   surname: "Пономарева",

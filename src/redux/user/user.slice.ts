@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+/* eslint-disable no-param-reassign */
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { Nullable } from "../../interfaces/util-types";
 import { User } from "../../interfaces/user.interface";
 import { mockUser } from "../../mock-data/mock-user";
@@ -16,7 +17,14 @@ const initialState: UserState = {
 export const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    changePhone: (state, action: PayloadAction<string>) => {
+      if (state.entity) {
+        state.entity.phone = action.payload;
+      }
+    },
+  },
 });
 
 export const { reducer } = userSlice;
+export const { changePhone } = userSlice.actions;

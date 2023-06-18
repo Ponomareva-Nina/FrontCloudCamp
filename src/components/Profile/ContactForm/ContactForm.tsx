@@ -1,35 +1,79 @@
-import { Field, Form, Formik } from "formik";
+import { Field, Form, Formik, FieldProps, FormikValues } from "formik";
 import * as Yup from "yup";
 import cn from "classnames";
+import { useNavigate } from "react-router-dom";
+import MaskedInput from "react-text-mask";
 import styles from "./ContactForm.module.scss";
-import { useAppSelector } from "../../../redux/redux-hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/redux-hooks";
+import { Button } from "../../UI";
+import { changePhone } from "../../../redux/user/user.slice";
 
 const Validation = Yup.object().shape({
-  phone: Yup.string().min(11, "Too Short!").max(11, "Too Long!").required("Required"),
+  phone: Yup.string().required("Required"),
   email: Yup.string().email("Invalid email").required("Required"),
 });
 
 export const ContactForm = () => {
   const user = useAppSelector((state) => state.user.entity);
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const submitHandler = (values: FormikValues) => {
+    const phoneNumber = values.phone
+      .replace(/\)/g, "")
+      .replace(/\(/g, "")
+      .replace(/-/g, "")
+      .replace(/ /g, "");
+
+    dispatch(changePhone(phoneNumber));
+    navigate("/create");
+  };
+
+  const phoneNumberMask = [
+    "+",
+    "7",
+    " ",
+    "(",
+    /[1-9]/,
+    /\d/,
+    /\d/,
+    ")",
+    " ",
+    /\d/,
+    /\d/,
+    /\d/,
+    "-",
+    /\d/,
+    /\d/,
+    "-",
+    /\d/,
+    /\d/,
+  ];
+
   return (
     <Formik
       initialValues={{ phone: user ? user.phone : "", email: user ? user.email : "" }}
-      onSubmit={() => {}}
+      onSubmit={submitHandler}
       validationSchema={Validation}
       enableReinitialize
     >
-      {({ errors, touched }) => (
+      {({ errors, touched, submitForm, handleChange }) => (
         <Form className={styles.form}>
           <label htmlFor="phone" className={styles.field}>
             <p>Номер телефона</p>
-            <Field
-              id="phone"
-              type="tel"
-              name="phone"
-              placeholder="Phone number"
-              className={cn("text-input")}
-              disabled
-            />
+            <Field name="phone" placeholder="Phone number" className={cn("text-input")}>
+              {(props: FieldProps) => (
+                <MaskedInput
+                  {...props.field}
+                  type="text"
+                  id="phone"
+                  mask={phoneNumberMask}
+                  placeholder="Enter your phone number"
+                  onChange={handleChange}
+                  className="text-input"
+                />
+              )}
+            </Field>
           </label>
           {errors.phone && touched.phone && <div className="error">{errors.phone}</div>}
 
@@ -41,14 +85,13 @@ export const ContactForm = () => {
               name="email"
               placeholder="Email"
               className={cn("text-input")}
-              disabled
             />
           </label>
           {errors.email && touched.email && <div className="error">{errors.email}</div>}
 
-          <button type="submit" className="hidden">
-            Submit
-          </button>
+          <Button id="button-start" appearance="normal" onClick={submitForm}>
+            Начать
+          </Button>
         </Form>
       )}
     </Formik>
