@@ -4,8 +4,8 @@ export interface ProfileForm {
   surname: string;
   sex: Sex | string;
   advantages: Array<string | undefined>;
-  checkboxInfo: Array<string | undefined>;
-  radioInfo: string;
+  checkboxGroup: Array<number>;
+  radioGroup: Array<number>;
   about: string;
 }
 

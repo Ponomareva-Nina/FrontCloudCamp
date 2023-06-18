@@ -19,11 +19,15 @@ export const stepOneValidators = Yup.object().shape({
 
 export const stepTwoValidators = Yup.object().shape({
   advantages: Yup.array()
-    .of(Yup.string().required("Field should not be empty"))
+    .of(
+      Yup.string()
+        .required("Field should not be empty")
+        .matches(/(?!^\d+$)^.+$/, "Should not contain numbers only")
+    )
     .required("Required")
     .min(1, "Should add at least one advantage"),
-  checkboxInfo: Yup.array().of(Yup.string()).required("This field is required"),
-  radioInfo: Yup.string().required("This field is required"),
+  checkboxGroup: Yup.array().of(Yup.number()),
+  radioGroup: Yup.number(),
 });
 
 export const stepThreeValidators = Yup.object().shape({

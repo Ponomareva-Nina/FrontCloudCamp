@@ -43,3 +43,10 @@
     box-shadow: none;
   }
 }
+
+label.field_group {
+  width: max-content;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}

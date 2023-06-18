@@ -8,7 +8,7 @@ import {
   Formik,
   FormikValues,
 } from "formik";
-import { FC } from "react";
+import { FC, useId } from "react";
 import cn from "classnames";
 import { ReactSVG } from "react-svg";
 import commonStyles from "../MultiStepForm.module.scss";
@@ -79,9 +79,45 @@ export const StepTwo: FC<StepProps> = ({ form, prevHandler, nextHandler }) => {
             />
           </div>
 
-          <div className={commonStyles.field}>field</div>
+          <div className={commonStyles.field} role="group" aria-labelledby="checkbox-group">
+            <p id="checkbox-group">Checkbox group</p>
+            {values.checkboxGroup.map((checkbox) => (
+              <label
+                className={styles.field_group}
+                key={useId()}
+                htmlFor={`field-checkbox-group-option-${checkbox}`}
+              >
+                <Field
+                  type="checkbox"
+                  name="checkbox-option"
+                  value={checkbox.toString()}
+                  id={`field-checkbox-group-option-${checkbox}`}
+                />
+                {checkbox}
+              </label>
+            ))}
+            <ErrorMessage name="checkboxGroup" component="span" className="error" />
+          </div>
 
-          <div className={commonStyles.field}>field</div>
+          <div className={commonStyles.field} role="group" aria-labelledby="radio-group">
+            <p id="radio-group">Radio group</p>
+            {values.radioGroup.map((radio) => (
+              <label
+                className={styles.field_group}
+                key={useId()}
+                htmlFor={`field-radio-group-option-${radio}`}
+              >
+                <Field
+                  type="radio"
+                  name="radio-option"
+                  value={radio.toString()}
+                  id={`field-radio-group-option-${radio}`}
+                />
+                {radio}
+              </label>
+            ))}
+            <ErrorMessage name="radioGroup" component="span" className="error" />
+          </div>
 
           <div className={commonStyles.btns_panel}>
             <Button appearance="outline" id="button-back" onClick={() => prevHandler(values)}>
