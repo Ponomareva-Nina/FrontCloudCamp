@@ -6,6 +6,7 @@ import { MultiStepper } from "../UI";
 import { StepTwo } from "./StepTwo/StepTwo";
 import { StepThree } from "./StepThree/StepThree";
 import styles from "./MultiStepForm.module.scss";
+import { SubmitPopup } from "../SubmitPopup/SubmitPopup";
 
 export const MultiStepForm = () => {
   const user = useAppSelector((state) => state.user.entity);
@@ -20,10 +21,16 @@ export const MultiStepForm = () => {
     radioGroup: [1, 2, 3],
     about: "",
   });
+  const [modalOpened, setModalOpened] = useState(false);
+
+  const closeModal = () => {
+    setModalOpened(false);
+  };
 
   const nextHandler = (stepData: Partial<ProfileForm>, isLastStep = false) => {
     setFormData((prev) => ({ ...prev, ...stepData }));
     if (isLastStep) {
+      setModalOpened(true);
       return;
     }
     setCurrentStep((prev) => prev + 1);
@@ -43,9 +50,12 @@ export const MultiStepForm = () => {
   ];
 
   return (
-    <div className={styles.container}>
-      <MultiStepper currentStep={currentStep} stepsLength={steps.length} />
-      {steps[currentStep]}
-    </div>
+    <>
+      <div className={styles.container}>
+        <MultiStepper currentStep={currentStep} stepsLength={steps.length} />
+        {steps[currentStep]}
+      </div>
+      {modalOpened && <SubmitPopup success={false} closeHandler={closeModal} />}
+    </>
   );
 };
