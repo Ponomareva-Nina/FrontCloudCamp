@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/FrontCloudCamp/static/css/main.05c2767f.css",
-    "main.js": "/FrontCloudCamp/static/js/main.c30bba2d.js",
+    "main.js": "/FrontCloudCamp/static/js/main.4b4c6b7a.js",
     "static/media/github.svg": "/FrontCloudCamp/static/media/github.72b4a10ca74e0df40669a4af3684cf7e.svg",
     "static/media/error.svg": "/FrontCloudCamp/static/media/error.c0e73bf13fcf055e49a15554e618f0db.svg",
     "static/media/success.svg": "/FrontCloudCamp/static/media/success.7c4f53c9959e8493ebcc49401cfcbe31.svg",
@@ -10,10 +10,10 @@
     "static/media/done_icon.svg": "/FrontCloudCamp/static/media/done_icon.501987ca8dd4487a7609571f0dfde8b7.svg",
     "index.html": "/FrontCloudCamp/index.html",
     "main.05c2767f.css.map": "/FrontCloudCamp/static/css/main.05c2767f.css.map",
-    "main.c30bba2d.js.map": "/FrontCloudCamp/static/js/main.c30bba2d.js.map"
+    "main.4b4c6b7a.js.map": "/FrontCloudCamp/static/js/main.4b4c6b7a.js.map"
   },
   "entrypoints": [
     "static/css/main.05c2767f.css",
-    "static/js/main.c30bba2d.js"
+    "static/js/main.4b4c6b7a.js"
   ]
 }
