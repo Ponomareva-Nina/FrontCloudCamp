@@ -9,7 +9,9 @@ import { Button } from "../../UI";
 import { changePhone } from "../../../redux/user/user.slice";
 
 const Validation = Yup.object().shape({
-  phone: Yup.string().required("Required"),
+  phone: Yup.string()
+    .required("Required")
+    .matches(/^[+0-9]*$/, "Please enter correct phone number"),
   email: Yup.string().email("Invalid email").required("Required"),
 });
 
@@ -18,13 +20,17 @@ export const ContactForm = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const submitHandler = (values: FormikValues) => {
-    const phoneNumber = values.phone
+  const handlePhoneFormat = (phone: string): string => {
+    const phoneNumber = phone
       .replace(/\)/g, "")
       .replace(/\(/g, "")
       .replace(/-/g, "")
       .replace(/ /g, "");
+    return phoneNumber;
+  };
 
+  const submitHandler = (values: FormikValues) => {
+    const phoneNumber = handlePhoneFormat(values.phone);
     dispatch(changePhone(phoneNumber));
     navigate("/create");
   };
@@ -57,7 +63,7 @@ export const ContactForm = () => {
       validationSchema={Validation}
       enableReinitialize
     >
-      {({ errors, touched, submitForm, handleChange }) => (
+      {({ errors, touched, submitForm, setFieldValue }) => (
         <Form className={styles.form}>
           <label htmlFor="phone" className={styles.field}>
             <p>Номер телефона</p>
@@ -69,7 +75,10 @@ export const ContactForm = () => {
                   id="phone"
                   mask={phoneNumberMask}
                   placeholder="Enter your phone number"
-                  onChange={handleChange}
+                  onChange={(e) => {
+                    const value = handlePhoneFormat(e.target.value) || "";
+                    setFieldValue("phone", value);
+                  }}
                   className="text-input"
                 />
               )}
