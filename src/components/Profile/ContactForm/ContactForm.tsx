@@ -1,5 +1,4 @@
 import { Field, Form, Formik, FieldProps, FormikValues } from "formik";
-import * as Yup from "yup";
 import cn from "classnames";
 import { useNavigate } from "react-router-dom";
 import MaskedInput from "react-text-mask";
@@ -7,13 +6,7 @@ import styles from "./ContactForm.module.scss";
 import { useAppDispatch, useAppSelector } from "../../../redux/redux-hooks";
 import { Button } from "../../UI";
 import { changePhone } from "../../../redux/user/user.slice";
-
-const Validation = Yup.object().shape({
-  phone: Yup.string()
-    .required("Required")
-    .matches(/^[+0-9]*$/, "Please enter correct phone number"),
-  email: Yup.string().email("Invalid email").required("Required"),
-});
+import { Validation } from "./validators";
 
 export const ContactForm = () => {
   const user = useAppSelector((state) => state.user.entity);
@@ -88,13 +81,7 @@ export const ContactForm = () => {
 
           <label htmlFor="email" className={styles.field}>
             <p>Email</p>
-            <Field
-              id="email"
-              type="email"
-              name="email"
-              placeholder="Email"
-              className={cn("text-input")}
-            />
+            <Field id="email" name="email" placeholder="Email" className={cn("text-input")} />
           </label>
           {errors.email && touched.email && <div className="error">{errors.email}</div>}
 
