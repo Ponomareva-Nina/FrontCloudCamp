@@ -21,7 +21,7 @@ export const submitUserForm = createAsyncThunk(
       return await res.json();
     } catch (error: unknown) {
       const err = error as Error;
-      rejectWithValue(err.message);
+      return rejectWithValue(err.message);
     }
   }
 );
