@@ -89,7 +89,7 @@ export const StepTwo: FC<StepProps> = ({ form, prevHandler, nextHandler }) => {
               >
                 <Field
                   type="checkbox"
-                  name="checkbox-option"
+                  name="checkboxChecked"
                   value={checkbox.toString()}
                   id={`field-checkbox-group-option-${checkbox}`}
                 />
@@ -109,7 +109,7 @@ export const StepTwo: FC<StepProps> = ({ form, prevHandler, nextHandler }) => {
               >
                 <Field
                   type="radio"
-                  name="radio-option"
+                  name="radioChecked"
                   value={radio.toString()}
                   id={`field-radio-group-option-${radio}`}
                 />
