@@ -18,7 +18,10 @@ export const stepOneValidators = Yup.object().shape({
 });
 
 export const stepTwoValidators = Yup.object().shape({
-  advantages: Yup.array().of(Yup.string()).required("This field is required"),
+  advantages: Yup.array()
+    .of(Yup.string().required("Field should not be empty"))
+    .required("Required")
+    .min(1, "Should add at least one advantage"),
   checkboxInfo: Yup.array().of(Yup.string()).required("This field is required"),
   radioInfo: Yup.string().required("This field is required"),
 });

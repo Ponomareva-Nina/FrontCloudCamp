@@ -4,7 +4,7 @@ import styles from "./Button.module.scss";
 
 interface ButtonProps
   extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
-  appearance?: "normal" | "disabled" | "outline";
+  appearance?: "normal" | "disabled" | "outline" | "ghost";
 }
 
 export const Button: FC<PropsWithChildren<ButtonProps>> = ({

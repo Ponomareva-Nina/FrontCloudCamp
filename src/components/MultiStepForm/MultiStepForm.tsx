@@ -15,7 +15,7 @@ export const MultiStepForm = () => {
     name: user ? user.name : "",
     surname: user ? user.surname : "",
     sex: "",
-    advantages: [""],
+    advantages: ["", "", ""],
     checkboxInfo: [""],
     radioInfo: "",
     about: "",
