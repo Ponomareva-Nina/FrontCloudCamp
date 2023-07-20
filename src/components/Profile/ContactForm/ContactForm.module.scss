@@ -1,0 +1,19 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+
+  label {
+    max-width: 40rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: .8rem;
+  }
+}

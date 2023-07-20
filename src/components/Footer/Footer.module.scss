@@ -1,0 +1,32 @@
+.footer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 2rem;
+    font-size: 1.3rem;
+}
+
+.github {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    color: var(--auxiliary-color);
+
+    & svg {
+        width: 3rem;
+        height: auto;
+        fill: var(--auxiliary-color);
+        vertical-align: middle;
+        transition: all .3s ease;
+    }
+
+    &:hover {
+        color: var(--accent-color);
+        
+        & svg {
+            fill: var(--accent-color);
+        }
+
+    }
+}
